@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+       #map {
+        height: 100vh;
+        width: 100%;
+       }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+
+    // This example displays a marker at the center of Australia.
+    // When the user clicks the marker, an info window opens.
+
+    function initMap() {
+      var uluru = {lat: 48.736816, lng: 28.229212};
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 16,
+        center: uluru
+      });
+
+      var contentString = '<div id="content">'+
+          '<div id="siteNotice">'+
+          '</div>'+
+          '<h1 id="firstHeading" class="firstHeading">Довжок</h1>'+
+          '<div id="bodyContent">'+
+          '<p> село в Україні, в Шаргородському районі Вінницької області.' +
+          'Населення становить 929 осіб. Орган місцевого самоврядування — Мурафська сільська рада.'+
+          'Село розташоване по обидва боки річки Мурафа, більша частина знаходиться на лівому її березі. Вулиці протягуються з Півдня на Північ вздовж річки на пагорбах.'+
+          'Налічується шість вулиць: Мічуріна, Леніна, Миру, ім. Героя Мандибури М. К., Молодіжна і Польова.'+
+          'Є два ставки які в народі носять назви «старий» та «новий».'+
+          'Село межує з такими селами Шаргородського району як Мурафа (на півночі), Хоменки, Джурин (на півдні), Михайлівка, Мала Деребчинка (на сході), Лукашівка, Дерев&#39;янки (на заході).'+
+
+
+          '</div>'+
+          '</div>';
+
+      var infowindow = new google.maps.InfoWindow({
+        content: contentString
+      });
+      const icon = "http://smayli.ru/data/smiles/vremyzprovojdenie-11.gif"
+      var marker = new google.maps.Marker({
+        position: uluru,
+        map: map,
+        animation: google.maps.Animation.BOUNCE,
+        icon: icon,
+        title: 'click me'
+      });
+      marker.addListener('click', function() {
+        infowindow.open(map, marker);
+      });
+    }
+
+
+
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhgo8lnG0p3oJQAAcm83B_obr-NURu_vE&callback=initMap">
+    </script>
+  </body>
+</html>
